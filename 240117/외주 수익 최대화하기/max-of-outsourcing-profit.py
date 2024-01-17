@@ -9,7 +9,7 @@ for _ in range(n):
     task.append([t,p])
 
 
-
+''' dfs 방식
 def dfs(day,income):
     global answer
 
@@ -25,3 +25,14 @@ def dfs(day,income):
 
 dfs(0,0)
 print(answer)
+'''
+
+# dp 방식
+dp = [0 for _ in range(n+1)]
+for i in range(n-1,-1,-1):
+    if i + task[i][0] <= n:
+        dp[i] = max(dp[i+task[i][0]] + task[i][1],dp[i+1])
+    else:
+        dp[i] = dp[i+1]
+
+print(dp[0])
