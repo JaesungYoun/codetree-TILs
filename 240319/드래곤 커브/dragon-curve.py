@@ -23,8 +23,8 @@ for _ in range(N):
             mat[x][y] = 1
     
 cnt = 0
-for i in range(100):
-    for j in range(100):
+for i in range(101):
+    for j in range(101):
         if mat[i][j] == 1 and mat[i+1][j] == 1 and mat[i][j+1] and mat[i+1][j+1] == 1:
             cnt += 1  
 print(cnt)
