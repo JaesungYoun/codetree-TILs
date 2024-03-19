@@ -38,10 +38,16 @@ def dfs(cnt,x,y):
         else:
             now = 0
         for j in range(now,n-1):
-            if mat[i][j] == 0 and mat[i][j+1] == 0 and mat[i][j-1] == 0:
-                mat[i][j] = 1
-                dfs(cnt+1,i,j+2)
-                mat[i][j] = 0
+            if j > 0 :
+                if mat[i][j] == 0 and mat[i][j+1] == 0 and mat[i][j-1] == 0:
+                    mat[i][j] = 1
+                    dfs(cnt+1,i,j+2)
+                    mat[i][j] = 0
+            else:
+                if mat[i][j] == 0 and mat[i][j + 1] == 0:
+                    mat[i][j] = 1
+                    dfs(cnt + 1, i, j + 2)
+                    mat[i][j] = 0
 
 ans = 4
 dfs(0,0,0)
