@@ -20,10 +20,10 @@ def dfs(depth,idx):
     global min_dist
     if depth == m:
         dist = 0
-        for px,py in people:
+        for p in people:
             temp = 1e9
-            for hx,hy in arr:
-                temp = min(abs(px - hx) + abs(py-hy),temp)
+            for a in arr:
+                temp = min(abs(p[0] - a[0]) + abs(p[1]-a[1]),temp)
             dist += temp
         min_dist = min(min_dist,dist)
         return
