@@ -36,6 +36,7 @@ def dfs(depth):
         visited[i] = True
         dfs(depth+1)
         arr.pop()
+        visited[i] = False
 
 dfs(0)
 print(min_dist)
