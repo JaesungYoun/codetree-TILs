@@ -11,7 +11,7 @@ for i in range(n):
     for j in range(n):
         if mat[i][j] == 1: # 사람인 경우
             people.append((i,j))
-        if mat[i][j] == 2:
+        elif mat[i][j] == 2:
             hospital.append((i,j))
 
 min_dist = 1e9
