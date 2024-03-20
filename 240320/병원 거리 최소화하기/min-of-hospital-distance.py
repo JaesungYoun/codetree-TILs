@@ -30,7 +30,7 @@ def dfs(depth,idx):
 
     for i in range(idx,len(hospital)):
         arr.append(hospital[i])
-        dfs(depth+1,idx+1)
+        dfs(depth+1,i+1)
         arr.pop()
 dfs(0,0)
 print(min_dist)
