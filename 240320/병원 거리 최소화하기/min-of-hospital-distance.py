@@ -16,7 +16,7 @@ for i in range(n):
 
 min_dist = 1e9
 arr = []
-visited = [False for _ in range(m+1)]
+visited = [False for _ in range(len(hospital)+1)]
 def dfs(depth):
     global min_dist
     if depth == m:
