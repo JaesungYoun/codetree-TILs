@@ -15,6 +15,7 @@ def bfs(x,y):
     q.append((x,y))
     temp = []
     temp.append((x,y))
+    visited[x][y] = 1
     _sum = mat[x][y]
     while q:
         x,y = q.popleft()
