@@ -64,7 +64,6 @@ for _ in range(K):
 cnt = 0
 for x in range(N):
     for y in range(N):
-        for k in range(len(virus[x][y])):
-            cnt += 1
+        cnt += len(virus[x][y])
 
 print(cnt)
