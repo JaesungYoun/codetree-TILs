@@ -20,7 +20,9 @@ for _ in range(M):
 def first(x,y,dead):
 
     new_virus = deque()
+    virus[x][y].sort()
     for i in range(len(virus[x][y])):
+        
         age = virus[x][y][i]
         if age <= land[x][y]:
             land[x][y] -= age
