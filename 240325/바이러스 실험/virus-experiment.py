@@ -34,12 +34,14 @@ def first(x,y,dead):
     return dead
 
 
-def second(x,y,dead,soil):
-    soil += dead
-    return soil
+def second(x,y,dead):
+    global land
+    land[x][y] += dead
+    return land[x][y]
 
 
 def third(x,y):
+    global virus
     for i in range(len(virus[x][y])):
         if virus[x][y][i] % 5 == 0:
             for d in range(8):
@@ -57,15 +59,14 @@ for _ in range(K):
             if virus[x][y]:
                 dead = first(x,y,0)
 
-                land[x][y] = second(x,y,dead,land[x][y])
+                land[x][y] = second(x,y,dead)
 
-    for x in range(len(virus)):
-        for y in range(len(virus[x])):
+    for x in range(N):
+        for y in range(N):
             if virus[x][y]:
                 third(x,y)
 
-    for x in range(len(land)):
-        for y in range(len(land[x])):
+
             land[x][y] += mat[x][y]
 
 cnt = 0
