@@ -34,9 +34,9 @@ def first(x,y,dead):
     return dead
 
 
-def second(x,y,dead):
-    land[x][y] += dead
-    return land[x][y]
+def second(x,y,dead,soil):
+    soil += dead
+    return soil
 
 
 def third(x,y):
@@ -57,7 +57,7 @@ for _ in range(K):
             if virus[x][y]:
                 dead = first(x,y,0)
 
-                land[x][y] = second(x,y,dead)
+                land[x][y] = second(x,y,dead,land[x][y])
 
     for x in range(len(virus)):
         for y in range(len(virus[x])):
