@@ -55,12 +55,14 @@ shark_x, shark_y = N // 2, N // 2  # 마법사 상어 위치
 
 
 def destroy(d, s):  # 구슬을 파괴하는 함수
-    global mat
+    global mat,answer
     for i in range(1, s + 1):  # 거리가 s 이하인 위치의 구슬 모두 파괴
         des_x = shark_x + (i * dx[d])
         des_y = shark_y + (i * dy[d])
         if 0 <= des_x < N and 0 <= des_y < N:
+            answer += mat[des_x][des_y]
             mat[des_x][des_y] = 0  # 구슬 파괴
+            
 
 def find_number_by_num(n):
     for i in range(N):
