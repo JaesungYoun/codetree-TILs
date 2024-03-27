@@ -20,7 +20,7 @@ if flag == False:
 info = []  # 방향,거리 정보
 for _ in range(M):
     d, s = map(int, input().split())
-    info.append([d - 1, s])
+    info.append([d, s])
 
 numbers = []
 now_x, now_y = N // 2, N // 2  # 넘버링을 하기 위한 변수 (이동하면서 모든 칸에 번호 부여)
@@ -52,7 +52,7 @@ dy = [1,0,-1,0]
 
 
 shark_x, shark_y = N // 2, N // 2  # 마법사 상어 위치
-
+answer = 0
 
 def destroy(d, s):  # 구슬을 파괴하는 함수
     global mat,answer
@@ -163,7 +163,7 @@ for m in range(M):  # 블리자드 마법 M번 시전
     # 4. 그룹핑
     grouping(mat)
 
-answer = 0
+
 for i in range(len(scores)):
     answer += i * scores[i]
 
