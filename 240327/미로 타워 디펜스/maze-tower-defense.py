@@ -72,32 +72,31 @@ def move(mat):
 
 def deleteMonsterIf4():
 
-    while 1:
-        arr = []  # 4개 이상 연속하는 몬스터 위치 담는 리스트
-        start_x, start_y = numbers[0]
-        temp = mat[start_x][start_y]
-        tmp_arr = [(start_x, start_y)]
-        cnt = 1
-        for x,y in numbers[1:]:
-            if mat[x][y] == temp and temp != 0 :
-                tmp_arr.append((x,y))
-                cnt += 1
-            elif mat[x][y] != temp:
-                tmp_arr = [(x,y)]
-                cnt = 1
-            if cnt >= 4:
-                arr.extend(temp_arr)
-                temp_arr = []
-            temp = mat[x][y]
+    arr = []  # 4개 이상 연속하는 몬스터 위치 담는 리스트
+    start_x, start_y = numbers[0]
+    temp = mat[start_x][start_y]
+    tmp_arr = [(start_x, start_y)]
+    cnt = 1
+    for x,y in numbers[1:]:
+        if mat[x][y] == temp and temp != 0 :
+            tmp_arr.append((x,y))
+            cnt += 1
+        elif mat[x][y] != temp:
+            tmp_arr = [(x,y)]
+            cnt = 1
+        if cnt >= 4:
+            arr.extend(tmp_arr)
+            tmp_arr = []
+        temp = mat[x][y]
 
-        if arr:
-            return arr
-        else:
-            break
+    if arr:
+        return arr
+    else:
+        return False
+
 
 
 def grouping(mat):
-    temp = [[0 for _ in range(N)] for _ in range(N)]
     count = 0
     num = -1
     nums = []
@@ -125,7 +124,7 @@ def grouping(mat):
             idx += 1
             if idx >= len(nums):
                 break
-
+answer=  0
 
 scores = [0,0,0,0]
 
@@ -141,9 +140,9 @@ for m in range(M):
         ny = tower_y + (i * dy[d])
 
         if 0<=nx<N and 0<=ny<N:
-            result += mat[nx][ny]
+            answer += mat[nx][ny]
             mat[nx][ny] = 0
-            temp.append((nx,ny))
+
 
     # 2. 비어있는 공간만큼 몬스터는 앞으로 이동하여 빈 공간 채우기
     move(mat)
@@ -151,7 +150,11 @@ for m in range(M):
     # 3. 4번이상 나오는 몬스터 있을 경우 삭제
     isMonster4 = deleteMonsterIf4()
 
-    if isMonster4:
+    while 1:
+        isMonster4 = deleteMonsterIf4()
+        if isMonster4 == False:
+            break
+
         for x,y in isMonster4:
             scores[mat[x][y]] += 1
             mat[x][y] = 0
@@ -159,10 +162,8 @@ for m in range(M):
         move(mat)
 
     # 4. 그룹핑
-
     grouping(mat)
 
-answer = 0
 for i in range(len(scores)):
     answer += i * scores[i]
 print(answer)
