@@ -83,7 +83,7 @@ def cooling(x,y,d):
             if in_range(x,y-1) and in_range(x-1,y-1) and wall[x][y-1][3] == 0 and wall[x-1][y-1][1] == 0:
                 temp[x-1][y-1] = cool -1
                 if cool - 1 > 1:
-                    queue.append((x-1,y,cool-1))
+                    queue.append((x-1,y-1,cool-1))
             if in_range(x,y+1) and in_range(x-1,y+1) and wall[x][y+1][2] == 0 and wall[x-1][y+1][1] == 0:
                 temp[x-1][y+1] = cool -1
                 if cool - 1 > 1:
@@ -167,12 +167,11 @@ def mixing():
 def reduce():
 
     for i in range(N-1):
-        if result[0][i] > 0 :
-            result[0][i] -= 1
+        result[0][i] -= 1
     for i in range(1,N):
         result[N-1][i] -= 1
 
-    for i in range(1,N):
+    for i in range(N):
         result[i][0] -= 1
 
     for i in range(N-1):
