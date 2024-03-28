@@ -62,9 +62,9 @@ for _ in range(M):
     sc = bfs(now_x,now_y)
 
     score += sc * mat[now_x][now_y]
-    if mat[now_x][now_y] > dice[5]:
+    if mat[now_x][now_y] < dice[5]:
         d = (d+1) % 4
-    elif mat[now_x][now_y] < dice[5]:
+    elif mat[now_x][now_y] > dice[5]:
         d = (d+3) % 4
     else:
         continue
