@@ -106,7 +106,7 @@ def cooling(x,y,d):
             if in_range(x-1,y) and in_range(x-1,y+1) and wall[x-1][y][1] == 0 and wall[x-1][y+1][2] == 0:
                 temp[x-1][y+1] = cool - 1
                 if cool - 1 > 1:
-                    queue.append((x,y+1,cool-1))
+                    queue.append((x-1,y+1,cool-1))
             if in_range(x+1,y) and in_range(x+1,y+1) and wall[x+1][y][0] == 0 and wall[x+1][y+1][2] == 0:
                 temp[x+1][y+1] = cool -1
                 if cool - 1 > 1:
