@@ -82,9 +82,9 @@ for _ in range(T):
     eat = []
     packman_move(0,px,py,0,visit)
     for x,y in eat:
-
-        mat[x][y] = []
-        dead[x][y] = 3
+        if mat[x][y]:
+            mat[x][y] = []
+            dead[x][y] = 3
     #4. 시체 소멸
     for x in range(4):
         for y in range(4):
