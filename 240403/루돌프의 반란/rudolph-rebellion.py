@@ -33,13 +33,11 @@ def rudolph_move():
                 if dist > (sx - rx) ** 2 + (sy - ry) ** 2:
                     dist = (sx - rx) ** 2 + (sy - ry) ** 2
                     dist1 = 1e9
-
                     for i in range(8):
                         nx = rx + drx[i]
                         ny = ry + dry[i]
 
                         if 0 <= nx < N and 0 <= ny < N and dist1 > (sx - nx) ** 2 + (sy - ny) ** 2:
-                 
                             dist1 = (sx-nx)**2 + (sy-ny)**2
                             temp_x,temp_y = nx,ny
                             d = i
@@ -68,7 +66,6 @@ def santa_move():
                 if mat[x][y] == num:
                     santa_pos.append((num,x, y))
                     break
-
     for num, x, y in santa_pos:
         if dead[x][y] != 0 :
             continue
@@ -84,7 +81,6 @@ def santa_move():
                     d = i
                     dist = (rx - nx) ** 2 + (ry - ny) ** 2
                     temp_x, temp_y = nx, ny
-
         if d != -1:
             if temp_x == rx and temp_y == ry:
                 mat[x][y] = 0
@@ -111,13 +107,13 @@ def collision(div, santa_num, cx, cy, d):
                 interaction(div, sx, sy, d)
             if not (cx == rx and cy == ry):
                 mat[cx][cy] = 0
-            dead[sx][sy] = 2
+
             mat[sx][sy] = santa_num
             cx, cy = sx, sy
-
+        dead[cx][cy] = 2
     else:
         score[santa_num] += D
-        for _ in range(D):
+        for k in range(D):
             sx = cx + dsx[(d + 2) % 4]
             sy = cy + dsy[(d + 2) % 4]
             if not (0 <= sx < N and 0 <= sy < N):
@@ -130,8 +126,8 @@ def collision(div, santa_num, cx, cy, d):
             if not (cx == rx and cy == ry):
                 mat[cx][cy] = 0
             mat[sx][sy] = santa_num
-            dead[sx][sy] = 2
             cx,cy = sx,sy
+        dead[cx][cy] = 2
 
 def interaction(div, sx, sy, d):
 
@@ -172,23 +168,23 @@ def end_game():
             return False
     return True
 
+
 for _ in range(M):
 
-    if end_game():
-        break
+
 
     rudolph_move()
-
     santa_move()
-
 
     for i in range(N):
         for j in range(N):
             if dead[i][j] > 0:
                 dead[i][j] -= 1
+    if end_game():
+        break
+
     for i in range(1, P + 1):
         if _end[i] == 0:
             score[i] += 1
-
 
 print(*score[1:])
