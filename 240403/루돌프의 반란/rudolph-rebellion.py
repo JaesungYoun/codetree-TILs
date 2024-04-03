@@ -25,18 +25,23 @@ def rudolph_move():
     candidate = []
     d = -1
     dist = 1e9
+
     temp_x, temp_y = rx, ry
     for sx in range(N-1,-1,-1):
         for sy in range(N-1,-1,-1):
             if mat[sx][sy] > 0:
-                for i in range(8):
-                    nx = rx + drx[i]
-                    ny = ry + dry[i]
+                if dist > (sx - rx) ** 2 + (sy - ry) ** 2:
+                    dist = (sx - rx) ** 2 + (sy - ry) ** 2
+                    dist1 = 1e9
 
-                    if 0 <= nx < N and 0 <= ny < N:
-                        if dist > (sx - nx) ** 2 + (sy - ny) ** 2:
-                            dist = (sx - nx) ** 2 + (sy - ny) ** 2
-                            temp_x, temp_y = nx, ny
+                    for i in range(8):
+                        nx = rx + drx[i]
+                        ny = ry + dry[i]
+
+                        if 0 <= nx < N and 0 <= ny < N and dist1 > (sx - nx) ** 2 + (sy - ny) ** 2:
+                 
+                            dist1 = (sx-nx)**2 + (sy-ny)**2
+                            temp_x,temp_y = nx,ny
                             d = i
     if d != -1:
         if mat[temp_x][temp_y] > 0:
@@ -176,6 +181,7 @@ for _ in range(M):
 
     santa_move()
 
+
     for i in range(N):
         for j in range(N):
             if dead[i][j] > 0:
@@ -183,5 +189,6 @@ for _ in range(M):
     for i in range(1, P + 1):
         if _end[i] == 0:
             score[i] += 1
+
 
 print(*score[1:])
