@@ -38,6 +38,7 @@ def rudolph_move():
                         ny = ry + dry[i]
 
                         if 0 <= nx < N and 0 <= ny < N and dist1 > (sx - nx) ** 2 + (sy - ny) ** 2:
+
                             dist1 = (sx-nx)**2 + (sy-ny)**2
                             temp_x,temp_y = nx,ny
                             d = i
@@ -66,6 +67,7 @@ def santa_move():
                 if mat[x][y] == num:
                     santa_pos.append((num,x, y))
                     break
+
     for num, x, y in santa_pos:
         if dead[x][y] != 0 :
             continue
@@ -81,6 +83,7 @@ def santa_move():
                     d = i
                     dist = (rx - nx) ** 2 + (ry - ny) ** 2
                     temp_x, temp_y = nx, ny
+
         if d != -1:
             if temp_x == rx and temp_y == ry:
                 mat[x][y] = 0
@@ -96,48 +99,48 @@ def collision(div, santa_num, cx, cy, d):
     if div == 0:
         score[santa_num] += C
 
-        for _ in range(C):
-            sx = cx + drx[d]
-            sy = cy + dry[d]
-            if not (0 <= sx < N and 0 <= sy < N):
-                mat[cx][cy] = 0
-                _end[santa_num] = 1  # 탈락
-                return
-            if mat[sx][sy] > 0:
-                interaction(div, sx, sy, d)
-            if not (cx == rx and cy == ry):
-                mat[cx][cy] = 0
 
-            mat[sx][sy] = santa_num
-            cx, cy = sx, sy
+        sx = cx + C * drx[d]
+        sy = cy + C * dry[d]
+        if not (0 <= sx < N and 0 <= sy < N):
+            mat[cx][cy] = 0
+            _end[santa_num] = 1  # 탈락
+            return
+        if mat[sx][sy] > 0:
+            interaction(div, sx, sy, d)
+        if not (cx == rx and cy == ry):
+            mat[cx][cy] = 0
+
+        mat[sx][sy] = santa_num
+        cx, cy = sx, sy
         dead[cx][cy] = 2
     else:
         score[santa_num] += D
-        for k in range(D):
-            sx = cx + dsx[(d + 2) % 4]
-            sy = cy + dsy[(d + 2) % 4]
-            if not (0 <= sx < N and 0 <= sy < N):
-                mat[cx][cy] = 0
-                _end[santa_num] = 1  # 탈락
-                return
-            if mat[sx][sy] > 0:
-                interaction(div, sx, sy, (d + 2) % 4)
 
-            if not (cx == rx and cy == ry):
-                mat[cx][cy] = 0
-            mat[sx][sy] = santa_num
-            cx,cy = sx,sy
+        sx = cx + D * dsx[(d + 2) % 4]
+        sy = cy + D * dsy[(d + 2) % 4]
+        if not (0 <= sx < N and 0 <= sy < N):
+            mat[cx][cy] = 0
+            _end[santa_num] = 1  # 탈락
+            return
+        if mat[sx][sy] > 0:
+            interaction(div, sx, sy, (d + 2) % 4)
+
+        if not (cx == rx and cy == ry):
+            mat[cx][cy] = 0
+        mat[sx][sy] = santa_num
+        cx,cy = sx,sy
         dead[cx][cy] = 2
 
 def interaction(div, sx, sy, d):
 
     while 1:
         if div == 0:
-            nx = sx + drx[d]
-            ny = sy + dry[d]
+            nx = sx +  drx[d]
+            ny = sy +  dry[d]
         else:
-            nx = sx + dsx[d]
-            ny = sy + dsy[d]
+            nx = sx +  dsx[d]
+            ny = sy +  dsy[d]
 
         if 0 <= nx < N and 0 <= ny < N:
             if mat[nx][ny] == 0:
@@ -168,13 +171,14 @@ def end_game():
             return False
     return True
 
-
 for _ in range(M):
 
 
 
     rudolph_move()
+
     santa_move()
+
 
     for i in range(N):
         for j in range(N):
@@ -186,5 +190,6 @@ for _ in range(M):
     for i in range(1, P + 1):
         if _end[i] == 0:
             score[i] += 1
+
 
 print(*score[1:])
