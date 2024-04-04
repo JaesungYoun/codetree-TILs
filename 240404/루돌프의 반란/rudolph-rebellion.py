@@ -130,13 +130,14 @@ def collision(div, santa_num, cx, cy, d):
 
 def interaction(div, sx, sy, d):
     temp = mat[sx][sy]
+    dead_temp = dead[sx][sy]
     while 1:
         if div == 0:
-            nx = sx +  drx[d]
-            ny = sy +  dry[d]
+            nx = sx + drx[d]
+            ny = sy + dry[d]
         else:
-            nx = sx +  dsx[d]
-            ny = sy +  dsy[d]
+            nx = sx + dsx[d]
+            ny = sy + dsy[d]
 
         if 0 <= nx < N and 0 <= ny < N:
             if mat[nx][ny] == 0:
@@ -144,16 +145,18 @@ def interaction(div, sx, sy, d):
                 mat[nx][ny] = temp
                 temp = temp1
                 if dead[sx][sy] > 0:
-                    dead[nx][ny] = dead[sx][sy]
-                    dead[sx][sy]= 0
+                    dead_temp1 = dead[nx][ny]
+                    dead[nx][ny] = dead_temp
+                    dead_temp = dead_temp1
                 break
             else:
                 temp1 = mat[nx][ny]
                 mat[nx][ny] = temp
                 temp = temp1
                 if dead[sx][sy] > 0:
-                    dead[nx][ny] = dead[sx][sy]
-                    dead[sx][sy] = 0
+                    dead_temp1 = dead[nx][ny]
+                    dead[nx][ny] = dead_temp
+                    dead_temp = dead_temp1
                 sx, sy = nx, ny
 
         else:
@@ -172,8 +175,6 @@ def end_game():
     return True
 
 for _ in range(M):
-
-
 
     rudolph_move()
 
