@@ -104,8 +104,7 @@ def collision(div, santa_num, cx, cy, d):
             return
         if mat[sx][sy] > 0:
             interaction(div, sx, sy, d)
-        if not (cx == rx and cy == ry):
-            mat[cx][cy] = 0
+        
 
         mat[sx][sy] = santa_num
         cx, cy = sx, sy
@@ -122,8 +121,7 @@ def collision(div, santa_num, cx, cy, d):
         if mat[sx][sy] > 0:
             interaction(div, sx, sy, (d + 2) % 4)
 
-        if not (cx == rx and cy == ry):
-            mat[cx][cy] = 0
+        
         mat[sx][sy] = santa_num
         cx,cy = sx,sy
         dead[cx][cy] = 2
