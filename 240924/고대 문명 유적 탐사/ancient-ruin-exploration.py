@@ -65,7 +65,6 @@ class Board:
         for j in range(N_large):
             for i in range(N_large-1, -1, -1):
                 if self.a[i][j] == 0:
-                    print(que)
                     self.a[i][j] = que.popleft()
 
 
