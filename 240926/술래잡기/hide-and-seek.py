@@ -19,7 +19,7 @@ for _ in range(m):
 
 for _ in range(h):
     x, y = map(int, input().split())
-    tree[x - 1][y - 1] = False
+    tree[x - 1][y - 1] = True
 
 seeker_pos = (n // 2, n // 2)
 
