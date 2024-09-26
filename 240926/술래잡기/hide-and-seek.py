@@ -178,5 +178,4 @@ initialize_seeker_dir()
 for t in range(1, k + 1):
     simulate(t)
 
-
 print(ans)
