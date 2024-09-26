@@ -55,7 +55,7 @@ def in_range(x, y):
 
 def can_move(x1,y1):
     x2,y2 = seeker_pos
-    return ((abs(x1-x2) + abs(y1-y2)) <= 3)
+    return abs(x1-x2) + abs(y1-y2)
 
 def hider_move(x,y,move_dir):
     dxh,dyh = [0,0,1,-1], [-1,1,0,0]
@@ -89,7 +89,7 @@ def hider_move_all():
 
     for i in range(n):
         for j in range(n):
-            if can_move(i,j):
+            if can_move(i,j) <= 3:
                 for move_dir in hiders[i][j]:
                     hider_move(i,j, move_dir)
 
@@ -147,7 +147,7 @@ def get_score(t):
     for dist in range(3):
         nx,ny = x + dist * dx[d], y + dist * dy[d]
 
-        if in_range(nx,ny ) and not trees[nx][ny]:
+        if in_range(nx,ny) and trees[nx][ny] == 0:
             ans += t * len(hiders[nx][ny])
 
             hiders[nx][ny] = []
