@@ -177,6 +177,6 @@ initialize_seeker_dir()
 # k번에 걸쳐 술래잡기를 진행합니다.
 for t in range(1, k + 1):
     simulate(t)
-    print(t,ans)
+
 
 print(ans)
