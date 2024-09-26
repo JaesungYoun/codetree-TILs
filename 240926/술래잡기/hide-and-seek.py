@@ -55,7 +55,7 @@ def in_range(x, y):
 
 def can_move(x1,y1):
     x2,y2 = seeker_pos
-    return abs(x1-x2) + abs(y1-y2) <= 3
+    return ((abs(x1-x2) + abs(y1-y2)) <= 3)
 
 def hider_move(x,y,move_dir):
     dxh,dyh = [0,0,1,-1], [-1,1,0,0]
