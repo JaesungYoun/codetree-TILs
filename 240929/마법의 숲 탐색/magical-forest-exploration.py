@@ -70,7 +70,7 @@ def down(x,y,d,id):
 
             isExit[x+dx[d]][y+dy[d]] = 1
 
-            ans += bfs(x,y) -3 + 1
+            ans += bfs(x,y) - 2
 
 
 
