@@ -83,7 +83,7 @@ def get_point(x,y):
 
 
 def throw_ball(turn):
-    t = (turn -1) % (4*n) + 1
+    t = turn % (4*n)
 
     if t <= n:
         for i in range(1,n+1):
