@@ -4,12 +4,6 @@ mat = [[0 for _ in range(n+1)]]
 for _ in range(n):
     mat.append([0] + list(map(int, input().split())))
 
-# 공 방향 순차대로
-ball_dx = [0, -1, 0, 1]
-ball_dy = [1, 0, -1, 0]
-
-ball_d = 0
-
 
 # 각 팀별 레일 위치
 v = [[] for _ in range(m+1)]
@@ -21,7 +15,7 @@ team_num = [[0 for _ in range(n+1)] for _ in range(n+1)]
 
 
 def in_range(x,y):
-    return 1<=x<n and 1<=y<n
+    return 1<=x<=n and 1<=y<=n
 
 
 dx = [-1,1,0,0]
