@@ -42,14 +42,17 @@ def down(x,y,d,id):
     while 1:
         if canMove(x+1,y):
             x += 1
+            continue
         elif canMove(x+1,y-1):
             x += 1
             y -= 1
             d = (d+3) % 4
+            continue
         elif canMove(x+1,y+1):
             x += 1
             y += 1
             d = (d+1) % 4
+            continue
 
         else:
             if not (in_range(x-1, y-1) and in_range(x+1,y+1)):
