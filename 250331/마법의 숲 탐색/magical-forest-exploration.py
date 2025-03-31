@@ -26,7 +26,7 @@ def check(x, y, num):
         dx1, dy1 = [-1,0,1,1,2], [1,2,1,2,1]
         for d in range(5):
             nx, ny = x + dx1[d], y + dy1[d]
-            if nx <0: break
+            if nx <0: continue
             if not(0 <= nx < R and 0 <= ny < C) or maps[nx][ny] != 0:
                 return False
     return True
