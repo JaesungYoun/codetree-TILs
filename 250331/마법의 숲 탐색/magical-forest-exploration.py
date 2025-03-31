@@ -19,7 +19,6 @@ dy = [0,1,0,-1]
 def canMove(x,y):
     flag = x+1 < R+3 and 0<=y-1 and y+1<C
     flag = flag and mat[x-1][y-1] == 0
-    flag = flag and mat[x-2][y] == 0
     flag = flag and mat[x][y-1] == 0
     flag = flag and mat[x][y] == 0
     flag = flag and mat[x+1][y] == 0
@@ -78,6 +77,9 @@ def bfs(x,y):
     visited = [[0 for _ in range(C)] for _ in range(R+3)]
     visited[x][y] = 1
     while q:
+        if result == R+2:
+            break
+
         x,y = q.popleft()
         for k in range(4):
             nx = x + dx[k]
