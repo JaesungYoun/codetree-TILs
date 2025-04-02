@@ -43,8 +43,9 @@ def cooling(x,y,d):
 
     if d == 0: # 에어컨 방향이 왼쪽
         queue = deque()
-
-        queue.append((x,y-1,start))
+        if wall[x][y-1][3] == 0 and in_range(x,y-1):
+            temp[x][y-1] = start
+            queue.append((x,y-1,start))
         while queue:
             x,y,cool = queue.popleft()
 
@@ -68,7 +69,9 @@ def cooling(x,y,d):
 
     elif d == 1: # 북쪽 방향
         queue = deque()
-        queue.append((x-1,y,start))
+        if wall[x-1][y][1] == 0 and in_range(x-1,y):
+            temp[x-1][y] = start
+            queue.append((x-1,y,start))
 
         while queue:
             x,y,cool = queue.popleft()
@@ -91,8 +94,9 @@ def cooling(x,y,d):
 
     elif d == 2: # 에어컨 방향이 오른쪽
         queue = deque()
-
-        queue.append((x,y+1,start))
+        if wall[x][y+1][2] == 0 and in_range(x,y+1):
+            temp[x][y+1] = start
+            queue.append((x,y+1,start))
         while queue:
             x,y,cool = queue.popleft()
             if in_range(x,y+1) and wall[x][y+1][2] == 0:
@@ -113,8 +117,9 @@ def cooling(x,y,d):
 
     else: # 에어컨 방향이 남쪽
         queue = deque()
-
-        queue.append((x+1,y,start))
+        if in_range(x+1,y) and wall[x+1][y][0] == 0:
+            temp[x+1][y] = start
+            queue.append((x+1,y,start))
 
         while queue:
             x,y,cool = queue.popleft()
