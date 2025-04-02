@@ -34,6 +34,9 @@ up,front,right = 1,2,3
 
 for i in range(m):
     nx,ny = x+dx[d],y+dy[d]
+    if not (0<=nx<n and 0<=ny<n):
+        d = (d+2) % 4
+        nx,ny = x+dx[d],y+dy[d]
 
     if d == 0:
         up,front,right = 7-right, front, up
