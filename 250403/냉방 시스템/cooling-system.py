@@ -27,7 +27,6 @@ for _ in range(m):
         wall[x-1][y][3] = 1
         wall[x][y][1] = 1
 
-
 # 좌상우하
 dx = [0,-1,0,1]
 dy = [-1,0,1,0]
@@ -56,40 +55,30 @@ def bfs(x,y,d,power):
             nx = x + s_dx
             ny = y + s_dy
             if 0<=nx<n and 0<=ny<n and temp[nx][ny] == 0 and power > 1:
-                if d == 0 or d ==2:
-                    if s_dx != 0 and s_dy != 0:
-                        if s_dx > 0:
-                            if (wall[x][y][(d+3)%4] == 0) and wall[nx][ny][(d+2)%4] == 0:
-                                queue.append((nx,ny,power-1))
-                                temp[nx][ny] = power-1
-                                coolness[nx][ny] += power-1
-                        else:
-                            if wall[x][y][(d+1)%4] == 0 and wall[nx][ny][(d+2)%4] == 0:
-                                queue.append((nx, ny, power - 1))
-                                temp[nx][ny] = power - 1
-                                coolness[nx][ny] += power - 1
+                if s_dx != 0 and s_dy != 0:
+                    if d == 0 or d ==2:
+                       if wall[x][y][rev_dir(nx-x,0)] == 0 and wall[nx][ny][(d+2) % 4] == 0:
+                           temp[nx][ny] = power-1
+                           queue.append((nx,ny,power-1))
+                           coolness[nx][ny] += power -1
                     else:
-                        if wall[nx][ny][(d+2)%4] == 0:
-                            queue.append((nx,ny,power-1))
-                            temp[nx][ny] = power-1
-                            coolness[nx][ny] += power-1
+                        if wall[x][y][rev_dir(0, ny-y)] == 0 and wall[nx][ny][(d + 2) % 4] == 0:
+                            temp[nx][ny] = power - 1
+                            queue.append((nx, ny, power - 1))
+                            coolness[nx][ny] += power - 1
                 else:
-                    if s_dx != 0 and s_dy != 0:
-                        if s_dy > 0:
-                            if (wall[x][y][(d+3)%4] == 0) and wall[nx][ny][(d+2)%4] == 0:
-                                queue.append((nx,ny,power-1))
-                                temp[nx][ny] = power-1
-                                coolness[nx][ny] += power-1
-                        else:
-                            if wall[x][y][(d+1)%4] == 0 and wall[nx][ny][(d+2)%4] == 0:
-                                queue.append((nx, ny, power - 1))
-                                temp[nx][ny] = power - 1
-                                coolness[nx][ny] += power - 1
-                    else:
-                        if wall[nx][ny][(d + 2) % 4] == 0:
-                            queue.append((nx, ny, power-1))
-                            temp[nx][ny] = power-1
-                            coolness[nx][ny] += power-1
+                    if wall[nx][ny][(d+2)%4] == 0:
+                        temp[nx][ny] = power - 1
+                        queue.append((nx, ny, power - 1))
+                        coolness[nx][ny] += power - 1
+
+def rev_dir(x_diff, y_diff):
+    for i, (ddx, ddy) in enumerate(zip(dx, dy)):
+        if ddx == x_diff and ddy == y_diff:
+            return i
+
+    return -1
+
 def spread(ax,ay,d):
 
     power = 5
@@ -97,7 +86,6 @@ def spread(ax,ay,d):
     ny = ay + dy[d]
 
     bfs(nx,ny,d,power)
-
 
 def mixing():
     difference = []
