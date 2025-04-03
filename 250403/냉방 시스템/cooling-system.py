@@ -57,12 +57,12 @@ def bfs(x,y,d,power):
             if 0<=nx<n and 0<=ny<n and temp[nx][ny] == 0 and power > 1:
                 if s_dx != 0 and s_dy != 0:
                     if d == 0 or d ==2:
-                       if wall[x][y][rev_dir(nx-x,0)] == 0 and wall[nx][ny][(d+2) % 4] == 0:
+                       if wall[x][y][dx.index(nx-x)] == 0 and wall[nx][ny][(d+2) % 4] == 0:
                            temp[nx][ny] = power-1
                            queue.append((nx,ny,power-1))
                            coolness[nx][ny] += power -1
                     else:
-                        if wall[x][y][rev_dir(0, ny-y)] == 0 and wall[nx][ny][(d + 2) % 4] == 0:
+                        if wall[x][y][dy.index(ny-y)] == 0 and wall[nx][ny][(d + 2) % 4] == 0:
                             temp[nx][ny] = power - 1
                             queue.append((nx, ny, power - 1))
                             coolness[nx][ny] += power - 1
