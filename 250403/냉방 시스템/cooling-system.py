@@ -21,11 +21,12 @@ for _ in range(m):
     x-=1
     y-=1
     if s == 1:
-        wall[x][y-1][3] = 1
-        wall[x][y][2] = 1
-    else:
-        wall[x-1][y][1] = 1
+        wall[x][y-1][2] = 1
         wall[x][y][0] = 1
+    else:
+        wall[x-1][y][3] = 1
+        wall[x][y][1] = 1
+
 
 # 좌상우하
 dx = [0,-1,0,1]
